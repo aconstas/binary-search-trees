@@ -49,8 +49,39 @@ class Tree {
     }
 
     delete(value) {
-
+        this.deleteRecursive(this.root, value)
     }
+
+    deleteRecursive(root, value) {
+        if (root === null) return root;
+        if (value < root.data) {
+            root.left = this.deleteRecursive(root.left, value);
+        } else if (value > root.data) {
+            root.right = this.deleteRecursive(root.right, value);
+        } else {
+            // Node with only one child or no child
+            if (root.left === null) {
+                return root.right;
+            } else if (root.right === null) {
+                return root.left;
+            }
+            // Node with two children: Get the inorder successor (smallest in the right subtree)
+            root.data = this.minValue(root.right);
+            // Delete the inorder successor
+            root.right = this.deleteRecursive(root.right, root.data);
+        }
+        return root;
+    }
+
+    // helper method to find the samllest value in the tree
+    minValue(node) {
+        let current = node;
+        while (current.left !== null) {
+            current = current.left;
+        }
+        return current.data;
+    }
+
     // prettyPrint method for visualizing the balanced BST in the console.
     prettyPrint = (node = this.root, prefix = "", isLeft = true) => {
         if (node === null) {
@@ -66,8 +97,11 @@ class Tree {
     };
 }
 
-let orderedArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+let orderedArray = [20, 30, 40, 50, 60, 70, 80];
 let newTree = new Tree(orderedArray);
 
-newTree.insert(11);
+// newTree.insert(11);
+// newTree.prettyPrint();
+
+newTree.delete(50);
 newTree.prettyPrint();
