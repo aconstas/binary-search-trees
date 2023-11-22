@@ -82,6 +82,23 @@ class Tree {
         return current.data;
     }
 
+    find(value) {
+        if (this.root === null) return this.root;
+        let current = this.root;
+        while (current) {
+            if (current.data === value) {
+                return current;
+            }
+            if (value < current.data) {
+                current = current.left;
+            } else {
+                current = current.right;
+            }
+        }
+        return null;
+    }
+    
+
     // prettyPrint method for visualizing the balanced BST in the console.
     prettyPrint = (node = this.root, prefix = "", isLeft = true) => {
         if (node === null) {
@@ -103,5 +120,7 @@ let newTree = new Tree(orderedArray);
 // newTree.insert(11);
 // newTree.prettyPrint();
 
-newTree.delete(50);
-newTree.prettyPrint();
+// newTree.delete(50);
+// newTree.prettyPrint();
+
+console.log(newTree.find(60));
