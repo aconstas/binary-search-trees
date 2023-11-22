@@ -11,6 +11,7 @@ class Tree {
         this.root = this.buildTree(array, 0, array.length - 1);
         this.prettyPrint();
     }
+
     buildTree(array, start, end) {
         if (start > end) return null;
         let mid = parseInt((start + end) / 2);
@@ -98,6 +99,13 @@ class Tree {
         return null;
     }
     
+    inOrderTraversal(node = this.root) {
+        if (node !== null) {
+            this.inOrderTraversal(node.left);
+            console.log(node.data);
+            this.inOrderTraversal(node.right);
+        }
+    }
 
     // prettyPrint method for visualizing the balanced BST in the console.
     prettyPrint = (node = this.root, prefix = "", isLeft = true) => {
@@ -123,4 +131,4 @@ let newTree = new Tree(orderedArray);
 // newTree.delete(50);
 // newTree.prettyPrint();
 
-console.log(newTree.find(60));
+console.log(newTree.inOrderTraversal());
