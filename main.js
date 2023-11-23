@@ -129,6 +129,20 @@ class Tree {
         return callback ? undefined : results;
     }
 
+    postOrder(node = this.root) {
+        if (node === null) return node;
+        this.postOrder(node.left);
+        this.postOrder(node.right);
+        console.log(node.data);
+    }
+
+    preOrder(node = this.root, callback) {
+        if (node === null) return node;
+        console.log(node.data);
+        this.preOrder(node.left);
+        this.preOrder(node.right);
+    }
+
     // prettyPrint method for visualizing the balanced BST in the console.
     prettyPrint = (node = this.root, prefix = "", isLeft = true) => {
         if (node === null) {
@@ -154,4 +168,6 @@ let newTree = new Tree(orderedArray);
 // newTree.prettyPrint();
 
 // console.log(newTree.inOrderTraversal());
-console.log(newTree.levelOrder());
+// console.log(newTree.levelOrder());
+// console.log(newTree.postOrder());
+console.log(newTree.preOrder());
