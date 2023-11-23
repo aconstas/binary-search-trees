@@ -74,7 +74,7 @@ class Tree {
         return root;
     }
 
-    // helper method to find the samllest value in the tree
+    // helper method to find the smallest value in the tree
     minValue(node) {
         let current = node;
         while (current.left !== null) {
@@ -107,6 +107,28 @@ class Tree {
         }
     }
 
+    // Queue: First In First Out
+    levelOrder(callback) {
+        if (this.root === null) return [];
+
+        const queue = [this.root];
+        const results = [];
+
+        while (queue.length > 0) {
+            const node = queue.shift();
+
+            if (callback) {
+                callback(node);
+            } else {
+                results.push(node.data);
+            }
+
+            if (node.left !== null) queue.push(node.left);
+            if (node.right !== null) queue.push(node.right);
+        }
+        return callback ? undefined : results;
+    }
+
     // prettyPrint method for visualizing the balanced BST in the console.
     prettyPrint = (node = this.root, prefix = "", isLeft = true) => {
         if (node === null) {
@@ -131,4 +153,5 @@ let newTree = new Tree(orderedArray);
 // newTree.delete(50);
 // newTree.prettyPrint();
 
-console.log(newTree.inOrderTraversal());
+// console.log(newTree.inOrderTraversal());
+console.log(newTree.levelOrder());
