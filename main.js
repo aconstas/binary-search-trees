@@ -156,18 +156,52 @@ class Tree {
             this.prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
         }
     };
+
+    height(node) {
+        if (node === null) return -1;
+        const leftHeight = this.height(node.left);
+        const rightHeight = this.height(node.right);
+        return Math.max(leftHeight, rightHeight) + 1;
+    }
+
+    depth(node) {
+        let current = this.root;
+        let depth = 0;
+        while (current) {
+            if (current.data === node) return depth;
+            if (node < current.data) {
+                current = current.left;
+                depth++;
+            } else {
+                current = current.right;
+                depth++;
+            }
+        }
+        return null;
+    }
 }
 
 let orderedArray = [20, 30, 40, 50, 60, 70, 80];
 let newTree = new Tree(orderedArray);
 
+// prettyPrint method console the new tree after insertion.
 // newTree.insert(11);
 // newTree.prettyPrint();
 
+// prettyPrint method consoles the new tree after deletion.
 // newTree.delete(50);
 // newTree.prettyPrint();
 
 // console.log(newTree.inOrderTraversal());
+
 // console.log(newTree.levelOrder());
+
 // console.log(newTree.postOrder());
-console.log(newTree.preOrder());
+
+// console.log(newTree.preOrder());
+
+// console.log(newTree.depth(70));
+
+// Find the node you are wanting the height of then pass it into the height() method.
+// const value = newTree.find(30) 
+// console.log(newTree.height(value));
