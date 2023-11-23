@@ -179,6 +179,19 @@ class Tree {
         }
         return null;
     }
+
+    isBalanced(root = this.root) {
+        if (root == null) return false;
+
+        let left = root.left;
+        let right = root.right;
+
+        if (Math.abs(this.height(left) - this.height(right)) > 1) {
+            console.log(false);
+        } else {
+            console.log(true);
+        }
+    }
 }
 
 let orderedArray = [20, 30, 40, 50, 60, 70, 80];
@@ -205,3 +218,5 @@ let newTree = new Tree(orderedArray);
 // Find the node you are wanting the height of then pass it into the height() method.
 // const value = newTree.find(30) 
 // console.log(newTree.height(value));
+
+// console.log(newTree.isBalanced());
