@@ -203,7 +203,7 @@ class Tree {
 let orderedArray = [20, 30, 40, 50, 60, 70, 80];
 let newTree = new Tree(orderedArray);
 
-    // prettyPrint method console the new tree after insertion.
+    // prettyPrint method consoles the new tree after insertion.
 // newTree.insert(90);
 // newTree.prettyPrint();
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
