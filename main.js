@@ -99,11 +99,12 @@ class Tree {
         return null;
     }
     
-    inOrderTraversal(node = this.root) {
+    inOrderTraversal(node = this.root, array = []) {
         if (node !== null) {
-            this.inOrderTraversal(node.left);
-            console.log(node.data);
-            this.inOrderTraversal(node.right);
+            this.inOrderTraversal(node.left, array);
+            array.push(node.data);
+            this.inOrderTraversal(node.right, array);
+            if (array) return array;
         }
     }
 
@@ -192,31 +193,50 @@ class Tree {
             console.log(true);
         }
     }
+
+    rebalance() {
+        const inOrder = this.inOrderTraversal();
+        this.root = this.buildTree(inOrder, 0, inOrder.length - 1);
+    }
 }
 
 let orderedArray = [20, 30, 40, 50, 60, 70, 80];
 let newTree = new Tree(orderedArray);
 
-// prettyPrint method console the new tree after insertion.
-// newTree.insert(11);
+    // prettyPrint method console the new tree after insertion.
+// newTree.insert(90);
 // newTree.prettyPrint();
-
-// prettyPrint method consoles the new tree after deletion.
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // prettyPrint method consoles the new tree after deletion.
 // newTree.delete(50);
 // newTree.prettyPrint();
-
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // console.log(newTree.inOrderTraversal());
-
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // console.log(newTree.levelOrder());
-
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // console.log(newTree.postOrder());
-
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // console.log(newTree.preOrder());
-
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // console.log(newTree.depth(70));
-
-// Find the node you are wanting the height of then pass it into the height() method.
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // Find the node you are wanting the height of then pass it into the height() method.
 // const value = newTree.find(30) 
 // console.log(newTree.height(value));
-
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // console.log(newTree.isBalanced());
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // insert more nodes to tree to unbalance it
+// newTree.insert(90);
+// newTree.insert(100);
+    // view the unbalanced tree
+// newTree.prettyPrint();
+    // verify the tree is unbalanced
+// newTree.isBalanced();
+// newTree.rebalance();
+    // view the newly balanced tree
+// newTree.prettyPrint();
+    // verify the tree is balanced
+// newTree.isBalanced();
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
